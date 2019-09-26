@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import offical.com.trustechfood.Model.Admin;
@@ -37,23 +38,36 @@ public class SQLiteAdapter {
     }
 
     public Admin getAdmin(String str_email, String str_password) {
-        Cursor cursor = database.rawQuery(AppConstant.ADMINS, null);
+//        Cursor cursor = database.rawQuery(AppConstant.ADMINS, null);
+        String[] args = new String[]{str_email, str_password};
+        Cursor cursor = database.query(AppConstant.ADMIN_TABLE_NAME, null, "email=? AND password=?", args, null, null, null);
         if (cursor.getCount() != -1) {
             while (cursor.moveToNext()) {
+                String id = cursor.getString(cursor.getColumnIndex("id"));
                 String email = cursor.getString(cursor.getColumnIndex("email"));
                 String password = cursor.getString(cursor.getColumnIndex("password"));
-                if (email.contentEquals(str_email) && password.contentEquals(str_password)){
-                    String id = cursor.getString(cursor.getColumnIndex("id"));
-                    String name = cursor.getString(cursor.getColumnIndex("name"));
-                    String role = cursor.getString(cursor.getColumnIndex("role"));
-                    Admin admin = new Admin();
-                    admin.setId(id);
-                    admin.setEmail(email);
-                    admin.setName(name);
-                    admin.setPassword(password);
-                    admin.setRole(role);
-                    return admin;
-                }
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String role = cursor.getString(cursor.getColumnIndex("role"));
+                Admin admin = new Admin();
+                admin.setId(id);
+                admin.setEmail(email);
+                admin.setName(name);
+                admin.setPassword(password);
+                admin.setRole(role);
+                return admin;
+
+//                if (email.contentEquals(str_email) && password.contentEquals(str_password)){
+//                    String id = cursor.getString(cursor.getColumnIndex("id"));
+//                    String name = cursor.getString(cursor.getColumnIndex("name"));
+//                    String role = cursor.getString(cursor.getColumnIndex("role"));
+//                    Admin admin = new Admin();
+//                    admin.setId(id);
+//                    admin.setEmail(email);
+//                    admin.setName(name);
+//                    admin.setPassword(password);
+//                    admin.setRole(role);
+//                    return admin;
+//                }
             }
         }
         return null;

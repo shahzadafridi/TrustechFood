@@ -2,6 +2,8 @@ package offical.com.trustechfood;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,8 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import offical.com.trustechfood.Admin.Dashboard;
 import offical.com.trustechfood.Model.Admin;
 import offical.com.trustechfood.SQLite.SQLiteAdapter;
+import offical.com.trustechfood.Util.AppConstant;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -39,8 +43,23 @@ public class LoginActivity extends AppCompatActivity {
             SQLiteAdapter adapter = new SQLiteAdapter(LoginActivity.this);
             Admin admin = adapter.getAdmin(str_email,str_password);
             if (admin != null){
-                Log.e("Login", admin.getName());
-                Log.e("Login","User successfully login");
+                SharedPreferences.Editor editor = AppConstant.getSharedPrefEditor(LoginActivity.this,"FoodApp");
+                editor.putString("id",admin.getId());
+                editor.putString("name",admin.getName());
+                editor.putString("email",admin.getEmail());
+                editor.putString("password",admin.getPassword());
+                editor.putString("role",admin.getRole());
+                editor.putBoolean("isLogin",true);
+                editor.commit();
+                if (admin.getRole().contentEquals("admin")){
+                    Intent intent = new Intent(LoginActivity.this, Dashboard.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }else if (admin.getRole().contentEquals("customer")){
+
+                }else if (admin.getRole().contentEquals("driver")){
+
+                }
             }else {
                 Log.e("Login","User failed to login");
             }
@@ -64,5 +83,17 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return isValid;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences preferences = AppConstant.getSharedPref(LoginActivity.this,"FoodApp");
+        boolean isLogin = preferences.getBoolean("isLogin",false);
+        if (isLogin){
+            Intent intent = new Intent(LoginActivity.this, Dashboard.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
     }
 }
