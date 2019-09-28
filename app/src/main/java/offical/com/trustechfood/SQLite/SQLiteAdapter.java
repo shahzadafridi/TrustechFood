@@ -37,6 +37,21 @@ public class SQLiteAdapter {
         }
     }
 
+    public void insertRestaurnants(String name, String address, String contact, String ratting, String description) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", name);
+        contentValues.put("address", address);
+        contentValues.put("contact", contact);
+        contentValues.put("ratting", ratting);
+        contentValues.put("description", description);
+        long isInsert = database.insert(AppConstant.RESTAU_TABLE_NAME, null, contentValues);
+        if (isInsert == -1) {
+            Toast.makeText(context, "Restaurnant failed to register.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Restaurnant registered successfully.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public Admin getAdmin(String str_email, String str_password) {
 //        Cursor cursor = database.rawQuery(AppConstant.ADMINS, null);
         String[] args = new String[]{str_email, str_password};

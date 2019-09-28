@@ -17,11 +17,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(AppConstant.ADMIN_TABLE);
+        sqLiteDatabase.execSQL(AppConstant.RESTU_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+AppConstant.ADMIN_TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+AppConstant.RESTAU_TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 }
