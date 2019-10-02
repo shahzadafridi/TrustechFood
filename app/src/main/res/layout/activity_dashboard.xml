@@ -4,26 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#0C000000"
+    android:orientation="vertical"
     tools:context=".Admin.Dashboard">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2"
         android:layout_margin="16dp"
         android:background="#0C000000"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/display_restuanants"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="6dp"
+            android:layout_weight="1"
             app:cardBackgroundColor="#fff"
-            android:layout_weight="1">
+            app:cardCornerRadius="6dp"
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,16 +33,16 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:src="@drawable/resturanants"/>
+                    android:src="@drawable/resturanants" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="22dp"
                     android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center_horizontal"
                     android:text="Display Restaurnants"
                     android:textColor="#000"
-                    android:gravity="center_horizontal"/>
+                    android:textSize="22dp" />
 
             </LinearLayout>
 
@@ -53,11 +53,11 @@
             android:id="@+id/add_restuanants"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="6dp"
             android:layout_marginLeft="10dp"
+            android:layout_weight="1"
             app:cardBackgroundColor="#fff"
-            android:layout_weight="1">
+            app:cardCornerRadius="6dp"
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,16 +67,92 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:src="@drawable/add_restuanrants"/>
+                    android:src="@drawable/add_restuanrants" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="22dp"
                     android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center_horizontal"
                     android:text="Add Restaurnants"
                     android:textColor="#000"
-                    android:gravity="center_horizontal"/>
+                    android:textSize="22dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="#0C000000"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/display_food_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#fff"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:src="@drawable/resturanants" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center_horizontal"
+                    android:text="Display Food Item"
+                    android:textColor="#000"
+                    android:textSize="22dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/add_food_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#fff"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:src="@drawable/add_restuanrants" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center_horizontal"
+                    android:text="Add Food    Item"
+                    android:textColor="#000"
+                    android:textSize="22dp" />
 
             </LinearLayout>
 

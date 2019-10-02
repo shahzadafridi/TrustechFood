@@ -22,16 +22,16 @@ public class AppConstant {
             "    PRIMARY KEY (id));";
 
     public static String RESTU_TABLE = "CREATE TABLE RESTAURANANTS (\n" +
-            "    id int AUTO_INCREMENT,\n" +
+            "    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "    name varchar(255) NOT NULL,\n" +
             "    address varchar(255) NOT NULL,\n" +
             "    ratting varchar(255) NOT NULL,\n" +
             "    contact varchar(255) NOT NULL,\n" +
-            "    description varchar(400) NOT NULL,\n" +
-            "    PRIMARY KEY (id));";
+            "    description varchar(400) NOT NULL);";
 
     //Select querires
     public static String ADMINS = "select * from "+ADMIN_TABLE_NAME;
+    public static String RESTAURNANTS = "select * from "+RESTAU_TABLE_NAME;
 
     //Sharedprefrences
 

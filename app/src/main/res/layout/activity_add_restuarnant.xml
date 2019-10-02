@@ -64,7 +64,7 @@
             android:id="@+id/rest_rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:layout_marginTop="5dp"/>
 
         <TextView
