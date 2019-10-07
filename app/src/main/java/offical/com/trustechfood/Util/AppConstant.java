@@ -11,6 +11,7 @@ public class AppConstant {
     //Table names
     public static String ADMIN_TABLE_NAME = "ADMIN";
     public static String RESTAU_TABLE_NAME = "RESTAURANANTS";
+    public static String FOOD_TABLE_NAME = "FOOD";
 
     //Create queries
     public static String ADMIN_TABLE = "CREATE TABLE ADMIN (\n" +
@@ -29,9 +30,13 @@ public class AppConstant {
             "    contact varchar(255) NOT NULL,\n" +
             "    description varchar(400) NOT NULL);";
 
+    public static String FOOD_TABLE = "CREATE TABLE FOOD(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,restName  varchar(255), name varchar(255) NOT NULL,category varchar(255) NOT NULL,ratting varchar(255) NOT NULL,price varchar(400) NOT NULL);";
+
+
     //Select querires
     public static String ADMINS = "select * from "+ADMIN_TABLE_NAME;
     public static String RESTAURNANTS = "select * from "+RESTAU_TABLE_NAME;
+    public static String FOODS = "select * from "+FOOD_TABLE_NAME;
 
     //Sharedprefrences
 

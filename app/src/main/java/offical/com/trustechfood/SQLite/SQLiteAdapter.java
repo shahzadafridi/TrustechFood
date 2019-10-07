@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import offical.com.trustechfood.Model.Admin;
+import offical.com.trustechfood.Model.Food;
 import offical.com.trustechfood.Model.Restaurnant;
 import offical.com.trustechfood.Util.AppConstant;
 
@@ -82,7 +83,7 @@ public class SQLiteAdapter {
         return null;
     }
 
-    public int updateRestaurnant(String id,String name, String address, String contact, String ratting, String description){
+    public int updateRestaurnant(String id, String name, String address, String contact, String ratting, String description) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
         contentValues.put("address", address);
@@ -90,7 +91,7 @@ public class SQLiteAdapter {
         contentValues.put("ratting", ratting);
         contentValues.put("description", description);
         String[] args = new String[]{id};
-        int i = database.update(AppConstant.RESTAU_TABLE_NAME,contentValues,"id=?",args);
+        int i = database.update(AppConstant.RESTAU_TABLE_NAME, contentValues, "id=?", args);
         if (i > 0) {
             Toast.makeText(context, "Restaurnant updated successfully.", Toast.LENGTH_SHORT).show();
         } else {
@@ -99,9 +100,9 @@ public class SQLiteAdapter {
         return i;
     }
 
-    public int deleteRestaurnant(String id){
+    public int deleteRestaurnant(String id) {
         String[] args = new String[]{id};
-        int i = database.delete(AppConstant.RESTAU_TABLE_NAME,"id=?",args);
+        int i = database.delete(AppConstant.RESTAU_TABLE_NAME, "id=?", args);
         if (i > 0) {
             Toast.makeText(context, "Restaurnant deleted successfully.", Toast.LENGTH_SHORT).show();
         } else {
@@ -109,6 +110,50 @@ public class SQLiteAdapter {
         }
         return i;
     }
+
+    //Food
+
+    public void insertFood(String restName, String FoodName, String category, String ratting, String price) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("restName", restName);
+        contentValues.put("name", FoodName);
+        contentValues.put("category", category);
+        contentValues.put("price", price);
+        contentValues.put("ratting", ratting);
+
+        long isInsert = database.insert(AppConstant.FOOD_TABLE_NAME, null, contentValues);
+        if (isInsert == -1) {
+            Toast.makeText(context, "Food item failed to register.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Food item registered successfully.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public List<Food> getFoods() {
+        Cursor cursor = database.rawQuery(AppConstant.FOODS, null);
+        if (cursor.getCount() != -1) {
+            List<Food> foods = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                String id = String.valueOf(cursor.getInt(cursor.getColumnIndex("id")));
+                String restName = cursor.getString(cursor.getColumnIndex("restName"));
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String category = cursor.getString(cursor.getColumnIndex("category"));
+                String ratting = cursor.getString(cursor.getColumnIndex("ratting"));
+                String price = cursor.getString(cursor.getColumnIndex("price"));
+                Food food = new Food();
+                food.setId(id);
+                food.setRestName(restName);
+                food.setCategroy(category);
+                food.setName(name);
+                food.setPrice(price);
+                food.setRatting(ratting);
+                foods.add(food);
+            }
+            return foods;
+        }
+        return null;
+    }
+
 
     public Admin getAdmin(String str_email, String str_password) {
         String[] args = new String[]{str_email, str_password};
