@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Admin.FoodItem.DisplayFoodItem" />
-        <activity android:name=".Admin.FoodItem.DeleteFoodItem" />
         <activity android:name=".Admin.FoodItem.EditFoodItem" />
         <activity android:name=".Admin.Restaurnant.DeleteRestaurnant" />
         <activity android:name=".Admin.Restaurnant.EditRestaurnant" />

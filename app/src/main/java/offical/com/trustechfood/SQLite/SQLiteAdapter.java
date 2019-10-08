@@ -154,6 +154,36 @@ public class SQLiteAdapter {
         return null;
     }
 
+    public int deleteFoodItem(String id) {
+        String[] args = new String[]{id};
+        int i = database.delete(AppConstant.FOOD_TABLE_NAME, "id=?", args);
+        if (i > 0) {
+            Toast.makeText(context, "Food item deleted successfully.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Food item failed to delete.", Toast.LENGTH_SHORT).show();
+        }
+        return i;
+    }
+
+    public int updateFoodItem(String id,String restName, String name, String category, String price, String ratting) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("restName", restName);
+        contentValues.put("name", name);
+        contentValues.put("category", category);
+        contentValues.put("price", price);
+        contentValues.put("ratting", ratting);
+        String[] args = new String[]{id};
+        int i = database.update(AppConstant.FOOD_TABLE_NAME, contentValues, "id=?", args);
+        if (i > 0) {
+            Toast.makeText(context, "Food item updated successfully.", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Food item failed to update.", Toast.LENGTH_SHORT).show();
+        }
+        return i;
+    }
+
+
+
 
     public Admin getAdmin(String str_email, String str_password) {
         String[] args = new String[]{str_email, str_password};

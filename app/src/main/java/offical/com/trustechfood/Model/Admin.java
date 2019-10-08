@@ -1,6 +1,7 @@
 package offical.com.trustechfood.Model;
 
 public class Admin {
+
     String id;
     String name;
     String email;

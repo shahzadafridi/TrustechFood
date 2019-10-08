@@ -25,6 +25,7 @@ public class AddFoodItem extends AppCompatActivity implements View.OnClickListen
     Spinner spinner;
     String str_rest_name;
     SQLiteAdapter adapter;
+    List<Restaurnant> restaurnantList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +47,23 @@ public class AddFoodItem extends AppCompatActivity implements View.OnClickListen
     }
 
     private void loadSpinner() {
-        final List<Restaurnant> restaurnantList = adapter.getRestaurnants();
+        restaurnantList = adapter.getRestaurnants();
         RestSpinnerAdapter spinnerAdapter = new RestSpinnerAdapter(AddFoodItem.this,restaurnantList);
         spinner.setAdapter(spinnerAdapter);
-        int i =  spinner.getSelectedItemPosition();
-        str_rest_name = restaurnantList.get(i).getName();
     }
 
     @Override
     public void onClick(View view) {
+        int i =  spinner.getSelectedItemPosition();
+        str_rest_name = restaurnantList.get(i).getName();
         String str_name = name.getText().toString();
         String str_category = category.getText().toString();
         String str_price = price.getText().toString();
         String str_ratting = ratting.getText().toString();
         adapter.insertFood(str_rest_name,str_name,str_category,str_price,str_ratting);
+        name.setText("");
+        category.setText("");
+        price.setText("");
+        ratting.setText("");
     }
 }
