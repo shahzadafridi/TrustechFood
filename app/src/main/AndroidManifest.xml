@@ -10,14 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registration.AdminRegistration"></activity>
+        <activity android:name=".Customer.CustOrderActivity"></activity>
+        <activity android:name=".Customer.CustomerFoodActivity" />
+        <activity android:name=".Customer.CustomerRestaurnantsActivity" />
+        <activity android:name=".Registration.AdminRegistration" />
         <activity android:name=".Registration.RegistrationActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".Admin.Dashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.Default" />
             </intent-filter>
         </activity>
         <activity android:name=".Admin.FoodItem.DisplayFoodItem" />
@@ -31,7 +34,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.Default" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

@@ -182,6 +182,33 @@ public class SQLiteAdapter {
         return i;
     }
 
+    public List<Food> getRestaurnantFoods(String rest_name) {
+        Cursor cursor = database.rawQuery(AppConstant.FOODS, null);
+        if (cursor.getCount() != -1) {
+            List<Food> foods = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                String id = String.valueOf(cursor.getInt(cursor.getColumnIndex("id")));
+                String restName = cursor.getString(cursor.getColumnIndex("restName"));
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String category = cursor.getString(cursor.getColumnIndex("category"));
+                String ratting = cursor.getString(cursor.getColumnIndex("ratting"));
+                String price = cursor.getString(cursor.getColumnIndex("price"));
+                if (rest_name.contentEquals(restName)) {
+                    Food food = new Food();
+                    food.setId(id);
+                    food.setRestName(restName);
+                    food.setCategroy(category);
+                    food.setName(name);
+                    food.setPrice(price);
+                    food.setRatting(ratting);
+                    foods.add(food);
+                }
+            }
+            return foods;
+        }
+        return null;
+    }
+
 
 
 
