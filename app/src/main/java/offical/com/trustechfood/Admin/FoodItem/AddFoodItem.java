@@ -60,7 +60,7 @@ public class AddFoodItem extends AppCompatActivity implements View.OnClickListen
         String str_category = category.getText().toString();
         String str_price = price.getText().toString();
         String str_ratting = ratting.getText().toString();
-        adapter.insertFood(str_rest_name,str_name,str_category,str_price,str_ratting);
+        adapter.insertFood(restaurnantList.get(i).getId(),str_rest_name,str_name,str_category,str_price,str_ratting);
         name.setText("");
         category.setText("");
         price.setText("");

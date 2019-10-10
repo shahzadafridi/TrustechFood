@@ -82,7 +82,7 @@ public class CustFoodAdapter extends RecyclerView.Adapter<CustFoodAdapter.MyView
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            Food food = foodList.get(position);
+            final Food food = foodList.get(position);
 
             androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(context)
                     .setTitle("Do you want to order?")
@@ -90,6 +90,9 @@ public class CustFoodAdapter extends RecyclerView.Adapter<CustFoodAdapter.MyView
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+
+                            SQLiteAdapter adapter = new SQLiteAdapter(context);
+                            adapter.insertOrder(food.getId(),food.getRest_id(),"pending");
                             // Intent inten = new Intent(context, CustOrderActivity.class);
                             context.startActivity(new Intent(context, CustOrderActivity.class));
                         }

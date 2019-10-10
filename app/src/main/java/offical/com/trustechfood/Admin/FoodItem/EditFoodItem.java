@@ -61,7 +61,7 @@ public class EditFoodItem extends AppCompatActivity {
         String str_price = price.getText().toString();
         String str_ratting = ratting.getText().toString();
         SQLiteAdapter adapter = new SQLiteAdapter(this);
-        adapter.updateFoodItem(getIntent().getStringExtra("id"), str_rest_name, str_name, str_category, str_price, str_ratting);
+        adapter.updateFoodItem(restaurnantList.get(i).getId(),getIntent().getStringExtra("id"), str_rest_name, str_name, str_category, str_price, str_ratting);
         Intent intent = new Intent(EditFoodItem.this, DisplayFoodItem.class);
         startActivity(intent);
     }

@@ -17,6 +17,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(AppConstant.ADMIN_TABLE);
+        sqLiteDatabase.execSQL(AppConstant.ORDER_TABLE);
         sqLiteDatabase.execSQL(AppConstant.FOOD_TABLE);
         sqLiteDatabase.execSQL(AppConstant.RESTU_TABLE);
     }
@@ -26,6 +27,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+AppConstant.ADMIN_TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+AppConstant.RESTAU_TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+AppConstant.FOOD_TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+AppConstant.ORDER_TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 }

@@ -84,6 +84,7 @@ public class FoodAdapter  extends RecyclerView.Adapter<FoodAdapter.MyViewHolder>
                 Food food = foodList.get(position);
                 Intent intent = new Intent(context, EditFoodItem.class);
                 intent.putExtra("id",food.getId());
+                intent.putExtra("rest_id",food.getRest_id());
                 intent.putExtra("name",food.getName());
                 intent.putExtra("category",food.getCategroy());
                 intent.putExtra("restName",food.getRestName());

@@ -3,12 +3,21 @@ package offical.com.trustechfood.Model;
 public class Food {
 
     String id;
+    String rest_id;
     String restName;
     String name;
     String categroy;
     String price;
     String ratting;
 
+
+    public String getRest_id() {
+        return rest_id;
+    }
+
+    public void setRest_id(String rest_id) {
+        this.rest_id = rest_id;
+    }
 
     public String getId() {
         return id;
