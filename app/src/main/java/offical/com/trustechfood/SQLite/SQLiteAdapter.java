@@ -145,6 +145,31 @@ public class SQLiteAdapter {
         return i;
     }
 
+    public Restaurnant searchRestaurnant(String rest_id){
+        String[] args = new String[]{rest_id};
+        Restaurnant restaurnant = null;
+        Cursor cursor = database.query(AppConstant.RESTAU_TABLE_NAME, null, "id=?", args, null, null, null);
+        if (cursor.getCount() != -1){
+            while (cursor.moveToNext()){
+                String id = String.valueOf(cursor.getInt(cursor.getColumnIndex("id")));
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String address = cursor.getString(cursor.getColumnIndex("address"));
+                String contact = cursor.getString(cursor.getColumnIndex("contact"));
+                String ratting = cursor.getString(cursor.getColumnIndex("ratting"));
+                String description = cursor.getString(cursor.getColumnIndex("description"));
+                restaurnant = new Restaurnant();
+                restaurnant.setId(id);
+                restaurnant.setName(name);
+                restaurnant.setAddress(address);
+                restaurnant.setContact(contact);
+                restaurnant.setRatting(ratting);
+                restaurnant.setDescription(description);
+            }
+            return restaurnant;
+        }
+        return restaurnant;
+    }
+
 
     /*
      *  Food Operation
@@ -179,9 +204,9 @@ public class SQLiteAdapter {
             while (cursor.moveToNext()) {
                 String id = String.valueOf(cursor.getInt(cursor.getColumnIndex("id")));
                 String rest_id = String.valueOf(cursor.getInt(cursor.getColumnIndex("rest_id")));
-                String restName = cursor.getString(cursor.getColumnIndex("food_id"));
-                String name = cursor.getString(cursor.getColumnIndex("rest_id"));
-                String category = cursor.getString(cursor.getColumnIndex("status"));
+                String restName = cursor.getString(cursor.getColumnIndex("restName"));
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String category = cursor.getString(cursor.getColumnIndex("category"));
                 String ratting = cursor.getString(cursor.getColumnIndex("ratting"));
                 String price = cursor.getString(cursor.getColumnIndex("price"));
                 Food food = new Food();
@@ -226,6 +251,34 @@ public class SQLiteAdapter {
             Toast.makeText(context, "Food item failed to update.", Toast.LENGTH_SHORT).show();
         }
         return i;
+    }
+
+
+    public Food searchFood(String food_id){
+        String[] args = new String[]{food_id};
+        Cursor cursor = database.query(AppConstant.FOOD_TABLE_NAME, null, "id=?", args, null, null, null);
+        Food food = null;
+        if (cursor.getCount() != -1){
+            while (cursor.moveToNext()){
+                String id = String.valueOf(cursor.getInt(cursor.getColumnIndex("id")));
+                String rest_id = String.valueOf(cursor.getInt(cursor.getColumnIndex("rest_id")));
+                String restName = cursor.getString(cursor.getColumnIndex("restName"));
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String category = cursor.getString(cursor.getColumnIndex("category"));
+                String ratting = cursor.getString(cursor.getColumnIndex("ratting"));
+                String price = cursor.getString(cursor.getColumnIndex("price"));
+                food = new Food();
+                food.setId(id);
+                food.setRest_id(rest_id);
+                food.setRestName(restName);
+                food.setCategroy(category);
+                food.setName(name);
+                food.setPrice(price);
+                food.setRatting(ratting);
+            }
+            return food;
+        }
+        return food;
     }
 
     public List<Food> getRestaurnantFoods(String rest_name) {
@@ -273,7 +326,7 @@ public class SQLiteAdapter {
         contentValues.put("rest_id", rest_id);
         contentValues.put("status", status);
         long isInsert = database.insert(AppConstant.ORDER_TABLE_NAME, null, contentValues);
-        if (isInsert == -1) {
+        if (isInsert != -1) {
             Toast.makeText(context, "Order Created Successfully.", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "Order failed to create.", Toast.LENGTH_SHORT).show();

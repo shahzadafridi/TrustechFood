@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/order_rest_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:hint="Restaurnant name:"/>
+
+    <TextView
+        android:id="@+id/order_food_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="16dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:hint="Food name"/>
+
+    <TextView
+        android:id="@+id/order_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="16dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:hint="Status"/>
+
+    <Button
+        android:id="@+id/order_detail"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Detail"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_height="1dp"
+        android:background="#1A000000"/>
+
+</LinearLayout>

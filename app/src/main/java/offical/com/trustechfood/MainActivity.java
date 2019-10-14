@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import offical.com.trustechfood.Admin.Dashboard;
+import offical.com.trustechfood.Customer.CustOrderActivity;
 import offical.com.trustechfood.Customer.CustomerRestaurnantsActivity;
 import offical.com.trustechfood.Registration.RegistrationActivity;
 
@@ -27,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void admin(View view) {
         Intent intent = new Intent(MainActivity.this, Dashboard.class);
+        startActivity(intent);
+    }
+
+    public void CustomerOrder(View view) {
+        Intent intent = new Intent(MainActivity.this, CustOrderActivity.class);
         startActivity(intent);
     }
 }
