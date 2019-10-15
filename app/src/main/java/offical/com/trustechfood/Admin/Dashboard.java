@@ -16,7 +16,7 @@ import offical.com.trustechfood.R;
 
 public class Dashboard extends AppCompatActivity implements View.OnClickListener {
 
-    CardView display,add, addFood,displayFood;
+    CardView display,add, addFood,displayFood,orders;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +25,12 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         add = (CardView) findViewById(R.id.add_restuanants);
         addFood = (CardView) findViewById(R.id.add_food_item);
         displayFood = (CardView) findViewById(R.id.display_food_item);
+        orders = (CardView) findViewById(R.id.display_admin_order);
         display.setOnClickListener(this);
         add.setOnClickListener(this);
         addFood.setOnClickListener(this);
         displayFood.setOnClickListener(this);
+        orders.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +48,10 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         }else if (view.getId() == R.id.display_food_item){
             Intent intent = new Intent(Dashboard.this, DisplayFoodItem.class);
             startActivity(intent);
+        }else if (view.getId() == R.id.display_admin_order){
+            Intent intent = new Intent(Dashboard.this, OrdersActivityForAdmin.class);
+            startActivity(intent);
+
         }
     }
 }

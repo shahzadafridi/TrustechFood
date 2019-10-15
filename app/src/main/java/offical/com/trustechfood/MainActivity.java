@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import offical.com.trustechfood.Admin.Dashboard;
+import offical.com.trustechfood.Customer.CustDashboard;
 import offical.com.trustechfood.Customer.CustOrderActivity;
 import offical.com.trustechfood.Customer.CustomerRestaurnantsActivity;
 import offical.com.trustechfood.Registration.RegistrationActivity;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void customer(View view) {
-        Intent intent = new Intent(MainActivity.this, CustomerRestaurnantsActivity.class);
+        Intent intent = new Intent(MainActivity.this, CustDashboard.class);
         startActivity(intent);
     }
 
@@ -31,8 +32,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void CustomerOrder(View view) {
-        Intent intent = new Intent(MainActivity.this, CustOrderActivity.class);
-        startActivity(intent);
-    }
 }

@@ -3,6 +3,7 @@ package offical.com.trustechfood.Adapter;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +21,18 @@ import offical.com.trustechfood.Model.Order;
 import offical.com.trustechfood.Model.OrderModel;
 import offical.com.trustechfood.Model.Restaurnant;
 import offical.com.trustechfood.R;
+import offical.com.trustechfood.SQLite.SQLiteAdapter;
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder> {
+public class OrderAdapterForAdmin extends RecyclerView.Adapter<OrderAdapterForAdmin.MyViewHolder> {
 
     Context context;
     List<OrderModel> orderList;
+    List<Order> orders;
 
-    public OrderAdapter(Context context, List<OrderModel> orderList) {
+    public OrderAdapterForAdmin(Context context, List<OrderModel> orderList,List<Order> orders) {
         this.context = context;
         this.orderList = orderList;
+        this.orders = orders;
     }
 
     @NonNull
@@ -77,15 +81,32 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                     Food food = orderModel.getFood();
 
                     Dialog dialog = new Dialog(context);
-                    dialog.setContentView(R.layout.order_detail_layout);
-                    TextView restName = dialog.findViewById(R.id.order_detail_restName);
-                    TextView restAddress = dialog.findViewById(R.id.order_detail_restAddress);
-                    TextView restRatting = dialog.findViewById(R.id.order_detail_restRatting);
-                    TextView foodName = dialog.findViewById(R.id.order_detail_foodName);
-                    TextView foodPrice = dialog.findViewById(R.id.order_detail_foodPrice);
-                    TextView foodRatting = dialog.findViewById(R.id.order_detail_ratting);
-                    TextView status = dialog.findViewById(R.id.order_detail_status);
-
+                    dialog.setContentView(R.layout.order_detail_layout_admin);
+                    TextView restName = dialog.findViewById(R.id.order_detail_admin_restName);
+                    TextView restAddress = dialog.findViewById(R.id.order_detail_admin_restAddress);
+                    TextView restRatting = dialog.findViewById(R.id.order_detail_admin_restRatting);
+                    TextView foodName = dialog.findViewById(R.id.order_detail_admin_foodName);
+                    TextView foodPrice = dialog.findViewById(R.id.order_detail_admin_foodPrice);
+                    TextView foodRatting = dialog.findViewById(R.id.order_detail_admin_ratting);
+                    TextView status = dialog.findViewById(R.id.order_detail_admin_status);
+                    Button decline =dialog.findViewById(R.id.order_detail_admin_decline);
+                    Button approve =dialog.findViewById(R.id.order_detail_admin_approve);
+                    decline.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SQLiteAdapter sqLiteAdaptera = new SQLiteAdapter(context);
+                            int i = getAdapterPosition();
+                            sqLiteAdaptera.updateOrder(orders.get(i).getId(),orders.get(i).getFood_id(),orders.get(i).getFood_id(),"rejected");
+                        }
+                    });
+                    approve.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SQLiteAdapter sqLiteAdaptera = new SQLiteAdapter(context);
+                            int i = getAdapterPosition();
+                            sqLiteAdaptera.updateOrder(orders.get(i).getId(),orders.get(i).getFood_id(),orders.get(i).getFood_id(),"accepted");
+                        }
+                    });
                     restName.setText("Rest name:"+restaurnant.getName());
                     restAddress.setText("Rest Address:"+restaurnant.getAddress());
                     restRatting.setText("Rest Ratting:"+restaurnant.getRatting());
@@ -93,14 +114,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                     foodPrice.setText("Food Price"+food.getPrice());
                     foodRatting.setText("Food Ratting:"+food.getRatting());
 
-                    if (orderList.get(getAdapterPosition()).getStatus().equals("pending") || orderList.get(getAdapterPosition()).getStatus().equals("rejected")){
+                    if (orders.get(getAdapterPosition()).getStatus().equals("pending") || orders.get(getAdapterPosition()).getStatus().equals("rejected")){
                         status.setBackground(context.getResources().getDrawable(R.drawable.status_pending_bg));
-                        status.setText(orderList.get(getAdapterPosition()).getStatus());
+                        status.setText(orders.get(getAdapterPosition()).getStatus());
                         status.setTextColor(context.getResources().getColor(R.color.reject));
                     }
-                    if (orderList.get(getAdapterPosition()).getStatus().equals("accepted")){
+                    if (orders.get(getAdapterPosition()).getStatus().equals("accepted")){
                         status.setBackground(context.getResources().getDrawable(R.drawable.status_active_bg));
-                        status.setText(orderList.get(getAdapterPosition()).getStatus());
+                        status.setText(orders.get(getAdapterPosition()).getStatus());
                         status.setTextColor(context.getResources().getColor(R.color.active));
                     }
 
@@ -110,5 +131,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                 }
             });
         }
+
     }
 }

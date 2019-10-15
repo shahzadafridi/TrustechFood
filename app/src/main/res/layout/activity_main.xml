@@ -10,19 +10,14 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Go To Admin"
+        android:text="Admin Dashboard"
         android:onClick="admin"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Go To Customer"
+        android:text="Customer Dashboard"
         android:onClick="customer"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Customer Order"
-        android:onClick="CustomerOrder"/>
 
 </LinearLayout>

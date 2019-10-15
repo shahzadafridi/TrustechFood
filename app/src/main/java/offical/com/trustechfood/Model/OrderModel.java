@@ -1,9 +1,18 @@
 package offical.com.trustechfood.Model;
 
 public class OrderModel {
+    String id;
     String status;
     Restaurnant restaurnant;
     Food food;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getStatus() {
         return status;
